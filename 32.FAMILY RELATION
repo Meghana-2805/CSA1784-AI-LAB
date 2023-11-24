@@ -1,23 +1,32 @@
 female(pam).
 female(liz).
-female(pat).
 female(ann).
-
-male(jim).
-male(bob).
+female(pat).
 male(tom).
-male(peter).
+male(bob).
+male(jim).
 
-parent(pam,bob).
-parent(tom,bob).
-parent(tom,liz).
-parent(bob,ann).
-parent(bob,pat).
-parent(pat,jim).
-parent(bob,peter).
-parent(peter,jin).
+% Relationships
+mother(pam, bob).
+mother(pam, jim).
+mother(liz, pat).
+mother(ann, tom).
 
-mother(X,Y):-parent(X,Y),female(X).
-father(X,Y):-parent(X,Y),male(X).
-sister(X,y):-parent(Z,X),parent(Z,Y),female(X),X\==Y.
-brother(X,Y):-parent(Z,X),parent(Z,Y),male(X),X\==Y.
+father(bob, ann).
+father(bob, tom).
+father(jim, pat).
+
+% Helper rules for grandparent relations
+parent(X, Y) :- mother(X, Y).
+parent(X, Y) :- father(X, Y).
+
+grandfather(X, Z) :- father(X, Y), parent(Y, Z).
+grandmother(X, Z) :- mother(X, Y), parent(Y, Z).
+
+% Helper rules for sibling relations
+sibling(X, Y) :- parent(Z, X), parent(Z, Y), X \= Y.
+
+% Relations
+sister(X, Y) :- female(X), sibling(X, Y).
+
+brother(X, Y) :- male(X), sibling(X, Y).
