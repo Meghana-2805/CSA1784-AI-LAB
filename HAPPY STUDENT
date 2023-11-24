@@ -1,0 +1,13 @@
+% Facts
+pass_exam(student, history).
+win_lottery(student).
+
+% Rules
+happy(X) :- pass_exam(X, history), win_lottery(X).
+pass_all_exams(X) :- study(X) ; lucky(X).
+pass_all_exams(X) :- pass_exam(X, _).
+lucky(X) :- win_lottery(X).
+
+% Given information
+study(john). % John did not study
+lucky(john). % John is lucky
