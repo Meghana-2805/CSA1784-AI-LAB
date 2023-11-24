@@ -1,0 +1,17 @@
+% Facts
+rainy(chennai).
+rainy(coimbatore).
+rainy(ooty).
+cold(ooty).
+
+% Rules
+weather(Place, rainy) :- rainy(Place).
+weather(Place, cold) :- cold(Place).
+
+% Forward Chaining Rule
+is_weather_good(Place) :- weather(Place, rainy), write(Place), write(' is rainy. It might not be a good day.').
+is_weather_good(Place) :- weather(Place, cold), write(Place), write(' is cold. It might not be a good day.').
+
+% Query Example
+% ?- is_weather_good(chennai).
+% Output: chennai is rainy. It might not be a good day.
