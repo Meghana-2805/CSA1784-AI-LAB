@@ -1,0 +1,18 @@
+% Facts
+first_name(tonyblair, tony).
+first_name(georgebush, georgedubya).
+
+second_name(tonyblair, blair).
+second_name(georgebush, bush).
+
+% Rule for pattern matching
+full_name(Person, FirstName, SecondName) :-
+    first_name(Person, FirstName),
+    second_name(Person, SecondName).
+
+% Query Examples
+% ?- full_name(tonyblair, FirstName, SecondName).
+% Output: FirstName = tony, SecondName = blair.
+
+% ?- full_name(georgebush, FirstName, SecondName).
+% Output: FirstName = georgedubya, SecondName = bush.
