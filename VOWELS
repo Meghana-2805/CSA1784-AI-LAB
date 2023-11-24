@@ -1,0 +1,7 @@
+sentence("This is my first Degree in Saveetha School of Engineering.").
+count_vowels(Count) :-
+    sentence(S),
+    string_chars(S, Chars),
+    include(vowel, Chars, Vowels),
+    length(Vowels, Count).
+vowel(Char) :- member(Char, [a, e, i, o, u, A, E, I, O, U]).
